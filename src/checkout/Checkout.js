@@ -60,35 +60,11 @@ export default function Checkout(props) {
             xs: 4,
             sm: 0,
           },
+          
+          display: 'flex',
+          justifyContent: 'center',
         }}
       >
-        <Grid
-          size={{ xs: 12, sm: 5, lg: 4 }}
-          sx={{
-            display: { xs: 'none', md: 'flex' },
-            flexDirection: 'column',
-            backgroundColor: 'background.paper',
-            borderRight: { sm: 'none', md: '1px solid' },
-            borderColor: { sm: 'none', md: 'divider' },
-            alignItems: 'start',
-            pt: 16,
-            px: 10,
-            gap: 4,
-          }}
-        >
-          <SitemarkIcon />
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              flexGrow: 1,
-              width: '100%',
-              maxWidth: 500,
-            }}
-          >
-            <Info totalPrice={activeStep >= 2 ? '$144.97' : '$134.98'} />
-          </Box>
-        </Grid>
         <Grid
           size={{ sm: 12, md: 7, lg: 8 }}
           sx={{

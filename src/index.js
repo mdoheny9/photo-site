@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Root from "./routes/root";
 import Upload from "./routes/upload";
+import ConfirmUpload from "./routes/confirmUpload";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
     path: "/upload",
     element: <Upload />,
   },
+  {
+    path: "/upload/confirm",
+    element: <ConfirmUpload />,
+  }
 ])
 
 const root = createRoot(document.getElementById("root"));
