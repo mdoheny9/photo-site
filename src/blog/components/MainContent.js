@@ -56,7 +56,7 @@ export default function MainContent() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch('http://localhost:8080/home'); // assume res ok? 
+        const res = await fetch('http://localhost:8080/api/posts'); // assume res ok? 
         const data = await res.json();
         setData(data);
 

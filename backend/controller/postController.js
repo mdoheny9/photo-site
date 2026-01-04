@@ -12,9 +12,18 @@ export const getAll = async(req, res) => {
 
 export const create = async(req, res) => {
     try {
-        const newPost = new Post(req.body);
+        const { author, description, img, date } = req.body;
+        const newPost = new Post({
+            author: {
+                name: author,
+                avatar: "default-avatar"
+            },
+            description,
+            img,
+            date
+        });
         const savedData = await newPost.save();
-        res.status(200).json(savedData);
+        res.status(201).json(savedData);
 
     } catch (err) {
         res.status(500).json({errorMessage:err.message })

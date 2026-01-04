@@ -9,7 +9,8 @@ const authorSchema = new Schema({
 const postSchema = new Schema({
     img: { type: String, required: true },
     description: { type: String, required: false },
-    author: { type: authorSchema, required: true }
+    author: { type: authorSchema, required: true },
+    date: { type: String, required: true }
 });
 
 const Post = model('Post', postSchema);

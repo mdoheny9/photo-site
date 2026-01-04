@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import CssBaseline from '@mui/material/CssBaseline';
 
 export default function ConfirmUpload() {
     const { state } = useLocation();
@@ -19,17 +20,23 @@ export default function ConfirmUpload() {
         postData.append("description", data.description);
         postData.append("author", data.author);
         postData.append("date", "December 31, 2025");
+
+        console.log(postData);
     }
 
     return (
         <div>
+        <CssBaseline enableColorScheme />   
             <p>Confirm upload? </p>
-            <p>{data.description}</p>
-            <img
-                src={preview}
-                alt="Preview"
-                style={{ maxWidth: "600px", marginBottom: "10px" }}
-            />
+            <div style={{padding: "1rem", color: "white", backgroundColor:"#282c34"}}>
+                <p>{data.description}</p>
+                <p>By: {data.author}</p>
+                <img
+                    src={preview}
+                    alt="Preview"
+                    style={{ maxWidth: "600px", marginBottom: "10px" }}
+                />
+            </div>
             <div>
                 <button onClick={handleUpload}>Yes</button>
                 <button onClick={handleReturn}>No, resubmit upload</button>

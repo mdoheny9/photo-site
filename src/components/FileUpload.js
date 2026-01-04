@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
 
-export default function FileUpload({ register, setValue }) {
+export default function FileUpload({ register }) {
     const [preview, setPreview] = useState(null);
 
-    function handlePreview(event) { // handle preview
-        console.log(event.target.files)
+    function handlePreview(event) {
         if (event.target.files) {
             const objectUrl = URL.createObjectURL(event.target.files[0]);
             setPreview(objectUrl);

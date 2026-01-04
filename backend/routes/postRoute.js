@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.get("/posts", getAll)
 
-router.post("/post", create);
+router.post("/upload", create);
 
 export default router;
