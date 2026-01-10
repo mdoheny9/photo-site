@@ -1,8 +1,10 @@
 import { useForm } from "react-hook-form";
-
 import FileUpload from "../components/FileUpload";
+import AppTheme from '../shared-theme/AppTheme';
+import ColorModeIconDropdown from '../shared-theme/ColorModeIconDropdown';
+import { styled, Box, CssBaseline, FormLabel, OutlinedInput, Grid } from '@mui/material';
 
-export default function Upload() {
+export default function Upload(props) {
     const { 
         register, // links inputs to form state
         handleSubmit, // prevents default form submission, validates input, and manages error state before submission
@@ -39,29 +41,56 @@ export default function Upload() {
         }
     }
 
+    const FormGrid = styled(Grid)(() => ({
+        display: 'flex',
+        flexDirection: 'column',
+    }));
+
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            {/* Username input */}
-            <div style={{marginBottom: "1rem"}}>{'Username: '}
-                <input {...register("author", { required: "Username is required" })} />
-                {errors.author && 
-                (<div style = {{color:"red"}}>{errors.author.message}</div>)}
-            </div>
+        <AppTheme {...props}>
+          <CssBaseline enableColorScheme />
+          <Box sx={{ position: 'fixed', top: '1rem', right: '1rem' }}>
+            <ColorModeIconDropdown />
+          </Box>
+            <Grid container spacing={3}>
 
-            {/* File input */}
-            <FileUpload register={register} />
+            <form onSubmit={handleSubmit(onSubmit)}>
+                {/* Username input */}
+                <FormGrid size={{ xs: 12, md: 6 }}>
+                    <FormLabel htmlFor="first-name" required>
+                    Username
+                    </FormLabel>
+                    <OutlinedInput
+                        {...register("author", { required: "Username is required" })}
+                    />
+                </FormGrid>
 
-            {/* Description input */}
-            <div style={{marginBottom: "1rem"}}>{'Description: '}
-                <input {...register("description")} />
-            </div>
+                {/* File input */}
+                <FormGrid size={{ xs: 12, md: 6 }}>
+                    <FormLabel required>
+                    File
+                    </FormLabel>
+                    <FileUpload register={register} />
+                </FormGrid>
 
-            <button disabled={isSubmitting} type="submit">
-                {isSubmitting ? "Loading..." : "Submit"}
-            </button>
-            {errors.root && 
-                (<div style = {{color:"red"}}>{errors.root.message}</div>)}
-        </form>
+                {/* Description input */}
+                <FormGrid size={{ xs: 12, md: 6 }}>
+                    <FormLabel>
+                    Description
+                    </FormLabel>
+                    <OutlinedInput
+                        {...register("description")}
+                    />
+                </FormGrid>
+
+                <button disabled={isSubmitting} type="submit">
+                    {isSubmitting ? "Loading..." : "Submit"}
+                </button>
+                {errors.root && 
+                    (<div style = {{color:"red"}}>{errors.root.message}</div>)}
+            </form>
+        </Grid>
+        </AppTheme>
     )
 }
 
