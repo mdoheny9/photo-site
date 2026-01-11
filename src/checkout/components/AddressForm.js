@@ -8,7 +8,7 @@ import Grid from '@mui/material/Grid';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import { styled } from '@mui/material/styles';
 
-import FileUpload from './FileUpload';
+// import FileUpload from '../../components/FileUpload';
 // import Post from '../../../backend/model/Post';
 
 const FormGrid = styled(Grid)(() => ({
@@ -52,7 +52,7 @@ export default function AddressForm() {
         />
       </FormGrid>
       <FormGrid size={{ xs: 12, md: 7 }}>
-        <FileUpload />
+        {/* <FileUpload /> */}
       </FormGrid>
       <FormGrid size={{ xs: 12 }}>
         <FormLabel htmlFor="address1" required>

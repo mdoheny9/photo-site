@@ -1,4 +1,6 @@
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+
 import FileUpload from "../components/FileUpload";
 import AppTheme from '../shared-theme/AppTheme';
 import ColorModeIconDropdown from '../shared-theme/ColorModeIconDropdown';
@@ -11,6 +13,8 @@ export default function Upload(props) {
         setError,
         formState: { errors, isSubmitting }, // errors: contains each form field and corresponding errors, isSubmitting: maintains submitting state
      } = useForm();
+
+    const navigate = useNavigate();
 
     const onSubmit = async (data) => {
         try {
@@ -33,6 +37,7 @@ export default function Upload(props) {
 
             if (!response.ok) throw new Error('Upload failed');
             console.log('Upload successful!');
+            navigate("/");
             
         } catch (err) {
             setError("root", {

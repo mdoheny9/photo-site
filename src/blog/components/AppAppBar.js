@@ -61,9 +61,6 @@ export default function AppAppBar() {
               <Button variant="text" color="info" size="small">
                 Map view
               </Button>
-              {/* <Button variant="text" color="info" size="small">
-                Profile
-              </Button> */}
             </Box>
           </Box>
           <Box
@@ -73,14 +70,12 @@ export default function AppAppBar() {
               alignItems: 'center',
             }}
           >
-            {/* <Button color="primary" variant="text" size="small">
-              Sign in
-            </Button> */}
-            <Link to={'/upload'}>
-              <Button color="primary" variant="contained" size="small">
-                Upload photo
-              </Button>
-            </Link>
+            <Button href = "/sign-up" color="primary" variant="text" size="small">
+              Sign up
+            </Button>
+            <Button href="/upload" color="primary" variant="contained" size="small" >
+              Upload photo
+            </Button>
             <ColorModeIconDropdown />
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' }, gap: 1 }}>
@@ -117,7 +112,12 @@ export default function AppAppBar() {
                 <MenuItem>Blog</MenuItem>
                 <Divider sx={{ my: 3 }} />
                 <MenuItem>
-                  <Button color="primary" variant="contained" fullWidth>
+                  <Button href="/upload" color="primary" variant="test" fullWidth>
+                    Upload photo
+                  </Button>
+                </MenuItem>
+                <MenuItem>
+                  <Button href = "/sign-up" color="primary" variant="contained" fullWidth>
                     Sign up
                   </Button>
                 </MenuItem>

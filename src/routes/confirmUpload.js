@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import CssBaseline from '@mui/material/CssBaseline';
+import Checkout from '../checkout/Checkout'
 
 export default function ConfirmUpload() {
     const { state } = useLocation();
