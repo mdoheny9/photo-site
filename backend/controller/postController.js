@@ -44,9 +44,9 @@ export const getUser = async(req, res) => {
             } 
         } else {
             console.log("User not found")
-            res.status(400).json({message: "User does not exist. Sign up?" });
+            res.status(400).json({message: "User does not exist." });
         }
-        
+
     } catch (err) {
         console.log(err);
         res.status(500).json({ error: "Error getting users" });

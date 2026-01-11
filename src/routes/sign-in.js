@@ -34,6 +34,11 @@ export default function SignIn(props) {
             navigate("/");
             
         } catch (err) {
+            if(err.message === "User does not exist.") {
+                setError("root", {
+                    message: err.message
+                })
+            }
             setError("root", {
                 message: err.message || "Something went wrong. I'm sorry!",
             })

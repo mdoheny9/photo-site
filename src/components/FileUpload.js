@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function FileUpload({ register }) {
+export default function FileUpload({ register, errors }) {
     const [preview, setPreview] = useState(null);
 
     function handlePreview(event) {
@@ -18,10 +18,13 @@ export default function FileUpload({ register }) {
     return (
         <div style={{marginBottom: "1rem"}}>
             <input type = "file" {...register("img", { 
-                required: true, 
+                required: "File is required", 
             })}
             onChange={handlePreview}
             />
+            {errors.img && (
+                <div style={{color: "red"}}>{errors.img.message}</div>
+            )}
             {preview && (
                 <div>
                     <img

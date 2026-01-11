@@ -15,6 +15,7 @@ import ColorModeIconDropdown from '../../shared-theme/ColorModeIconDropdown';
 import Sitemark from './SitemarkIcon';
 
 import { Outlet, Link } from "react-router-dom";
+import { Typography } from '@mui/material';
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: 'flex',
@@ -55,6 +56,9 @@ export default function AppAppBar() {
           <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0 }}>
             <Sitemark />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+              <Button href="/upload" color="primary" variant="outlined" size="small" >
+                Upload photo
+              </Button>
               <Button variant="text" color="info" size="small">
                 Gallery
               </Button>
@@ -70,12 +74,14 @@ export default function AppAppBar() {
               alignItems: 'center',
             }}
           >
-            <Button href = "/sign-up" color="primary" variant="text" size="small">
+            <Button href = "/sign-in" color="primary" variant="contained" size="small">
+              Sign in
+            </Button>
+            <Typography variant="caption text" color="textSecondary"> or </Typography>
+            <Button href = "/sign-up" color="primary" variant="outlined" size="small">
               Sign up
             </Button>
-            <Button href="/upload" color="primary" variant="contained" size="small" >
-              Upload photo
-            </Button>
+            
             <ColorModeIconDropdown />
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' }, gap: 1 }}>
@@ -104,6 +110,11 @@ export default function AppAppBar() {
                     <CloseRoundedIcon />
                   </IconButton>
                 </Box>
+                <MenuItem>
+                  <Button href="/upload" variant = "outlined">
+                    Upload photo
+                  </Button>
+                </MenuItem>
                 <MenuItem>Features</MenuItem>
                 <MenuItem>Testimonials</MenuItem>
                 <MenuItem>Highlights</MenuItem>
@@ -112,20 +123,17 @@ export default function AppAppBar() {
                 <MenuItem>Blog</MenuItem>
                 <Divider sx={{ my: 3 }} />
                 <MenuItem>
-                  <Button href="/upload" color="primary" variant="test" fullWidth>
-                    Upload photo
-                  </Button>
-                </MenuItem>
-                <MenuItem>
-                  <Button href = "/sign-up" color="primary" variant="contained" fullWidth>
-                    Sign up
-                  </Button>
-                </MenuItem>
-                <MenuItem>
-                  <Button color="primary" variant="outlined" fullWidth>
+                  <Button href="/sign-in" color="primary" variant="contained" fullWidth>
                     Sign in
                   </Button>
                 </MenuItem>
+                <Typography align="center" color="textSecondary">or</Typography>
+                <MenuItem>
+                  <Button href = "/sign-up" color="primary" variant="outlined" fullWidth>
+                    Sign up
+                  </Button>
+                </MenuItem>
+                
               </Box>
             </Drawer>
           </Box>
