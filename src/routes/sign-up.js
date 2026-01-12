@@ -26,14 +26,16 @@ export default function SignUp(props) {
                     password: data.password
                 })
             });
+            
+            const responseData = await response.json();
 
-            if (!response.ok) throw new Error('Sign up failed');
+            if (!response.ok) throw new Error(responseData.message);
             console.log('Sign up successful!');
             navigate("/");
             
         } catch (err) {
             setError("root", {
-                message: "Something went wrong. I'm sorry!",
+                message: err.message || "Something went wrong. I'm sorry!",
             })
         }
     }
