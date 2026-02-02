@@ -1,5 +1,5 @@
-import Blog from "../blog/Blog"
+import Home from "./Home"
 
 export default function Root() {
-    return <Blog />
+    return <Home />
 }

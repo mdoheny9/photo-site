@@ -4,8 +4,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Root from "./routes/root";
 import Upload from "./routes/upload";
-import ConfirmUpload from "./routes/confirmUpload";
-import Checkout from "./checkout/Checkout";
 import SignUp from "./routes/sign-up";
 import SignIn from "./routes/sign-in"
 
@@ -19,10 +17,6 @@ const router = createBrowserRouter([
   {
     path: "/upload",
     element: <Upload />,
-  },
-  {
-    path: "/upload/confirm",
-    element: <Checkout />,
   },
   {
     path: "/sign-up",
