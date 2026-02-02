@@ -9,7 +9,6 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import RssFeedRoundedIcon from '@mui/icons-material/RssFeedRounded';
 
-// React frontend component
 import { useState, useEffect } from 'react';
 
 import PostCard from './PostCard.js';
@@ -79,7 +78,7 @@ export default function MainContent() {
         <Typography variant="h1" gutterBottom>
           Gallery
         </Typography>
-        <Typography>Catch the latest uploads from your community!</Typography>
+        <Typography>View the latest uploads from your community!</Typography>
       </div>
       <Box
         sx={{

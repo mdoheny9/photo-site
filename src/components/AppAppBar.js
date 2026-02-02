@@ -153,15 +153,10 @@ export default function AppAppBar() {
                     Upload photo
                   </Button>
                 </MenuItem>
-                <MenuItem>Features</MenuItem>
-                <MenuItem>Testimonials</MenuItem>
-                <MenuItem>Highlights</MenuItem>
-                <MenuItem>Pricing</MenuItem>
-                <MenuItem>FAQ</MenuItem>
-                <MenuItem>Blog</MenuItem>
+                <MenuItem>Gallery</MenuItem>
+                <MenuItem>Map View</MenuItem>
                 <Divider sx={{ my: 3 }} />
                 <DropDownComponent />
-                
               </Box>
             </Drawer>
           </Box>

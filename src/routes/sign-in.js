@@ -49,6 +49,55 @@ export default function SignIn(props) {
         flexDirection: 'column',
     }));
 
+    function SignInForm() {
+        return (
+            <form onSubmit={handleSubmit(onSubmit)}>
+                {/* Email input */}
+                <FormGrid sx={{ xs: 12, md: 6}}>
+                    <FormLabel htmlFor="first-name" required>
+                    Email
+                    </FormLabel>
+                    <OutlinedInput 
+                        {...register("email", { 
+                            required: "Email is required",
+                            pattern: {
+                                value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,6}$/,
+                                message: "Email is not valid"
+                            }
+                        })}
+                    />
+                    {errors.email && 
+                        (<Typography style = {{color:"red"}}>{errors.email.message}</Typography>)}
+                </FormGrid>
+
+                {/* Password input */}
+                <FormGrid sx={{ xs: 12, md: 6}}>
+                    <FormLabel htmlFor="first-name" required>
+                    Password
+                    </FormLabel>
+                    <OutlinedInput type="password"
+                        {...register("password", { 
+                            required: "Password is required",
+                            minLength: {
+                                value: 8,
+                                message: "Password must contain at least 8 characters"
+                            }
+                        })}
+                    />
+                    {errors.password && 
+                        (<Typography style = {{color:"red"}}>{errors.password.message}</Typography>)}
+                </FormGrid>
+                
+                {/* Sign up button */}
+                <Button disabled={isSubmitting} type="submit" color="secondary" variant="contained" size="small" sx = {{mt: 2}}> 
+                    {isSubmitting ? "Loading..." : "Sign in"}
+                </Button>
+                {errors.root && 
+                    (<Typography style = {{color:"red"}}>{errors.root.message}</Typography>)}
+            </form>
+        );
+    }
+
     return (
         <AppTheme {...props}>
             {/* <CssBaseline enableColorScheme /> */}
@@ -58,52 +107,8 @@ export default function SignIn(props) {
                         <Typography variant="h4" sx={{ mb: 2 }}>
                             Sign in
                         </Typography>
-                        <form onSubmit={handleSubmit(onSubmit)}>
-                            {/* Email input */}
-                            <FormGrid sx={{ xs: 12, md: 6}}>
-                                <FormLabel htmlFor="first-name" required>
-                                Email
-                                </FormLabel>
-                                <OutlinedInput 
-                                    {...register("email", { 
-                                        required: "Email is required",
-                                        pattern: {
-                                            value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,6}$/,
-                                            message: "Email is not valid"
-                                        }
-                                    })}
-                                />
-                                {errors.email && 
-                                    (<Typography style = {{color:"red"}}>{errors.email.message}</Typography>)}
-                            </FormGrid>
-
-                            {/* Password input */}
-                            <FormGrid sx={{ xs: 12, md: 6}}>
-                                <FormLabel htmlFor="first-name" required>
-                                Password
-                                </FormLabel>
-                                <OutlinedInput type="password"
-                                    {...register("password", { 
-                                        required: "Password is required",
-                                        minLength: {
-                                            value: 8,
-                                            message: "Password must contain at least 8 characters"
-                                        }
-                                    })}
-                                />
-                                {errors.password && 
-                                    (<Typography style = {{color:"red"}}>{errors.password.message}</Typography>)}
-                            </FormGrid>
-                            
-                            {/* Sign up button */}
-                            <Button disabled={isSubmitting} type="submit" color="secondary" variant="contained" size="small" sx = {{mt: 2}}> 
-                                {isSubmitting ? "Loading..." : "Sign in"}
-                            </Button>
-                            {errors.root && 
-                                (<Typography style = {{color:"red"}}>{errors.root.message}</Typography>)}
-                        </form>
+                        <SignInForm />
                     </CardContent>
-
                 </Card>
             </Grid>
         </AppTheme>
