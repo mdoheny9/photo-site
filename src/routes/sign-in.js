@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../components/AuthProvider";
 
 import AppTheme from '../shared-theme/AppTheme';
 import { styled, Card, CardContent, Typography, Button, Grid, CssBaseline, FormLabel, OutlinedInput } from '@mui/material';
@@ -13,6 +14,8 @@ export default function SignIn(props) {
      } = useForm();
     
     const navigate = useNavigate();
+
+    const { login } = useAuth();
 
     const onSubmit = async (data) => {
         console.log("submit button pressed");
@@ -31,6 +34,7 @@ export default function SignIn(props) {
             if (!response.ok) throw new Error(responseData.message);
 
             console.log('Sign in successful!');
+            login(responseData.token);
             navigate("/");
             
         } catch (err) {

@@ -16,6 +16,8 @@ import Sitemark from './SitemarkIcon';
 
 import { Outlet, Link } from "react-router-dom";
 import { Typography } from '@mui/material';
+import { useContext } from 'react';
+import { useAuth, AuthProvider } from '../../components/AuthProvider';
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: 'flex',
@@ -39,6 +41,51 @@ export default function AppAppBar() {
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
+
+  const dropdown_guest_component = (
+    <Container>
+      <MenuItem>
+        <Button href="/sign-in" color="primary" variant="contained" fullWidth>
+          Sign in
+        </Button>
+      </MenuItem>
+      <Typography align="center" color="textSecondary">or</Typography>
+      <MenuItem>
+        <Button href = "/sign-up" color="primary" variant="outlined" fullWidth>
+          Sign up
+        </Button>
+      </MenuItem>
+    </Container>
+  );
+
+  const dropdown_user_component = (
+    <Container></Container>
+  );
+
+  function TopComponent() {
+    const { token, logout } = useAuth();
+    if (token) {
+      return (
+        <Container>
+          <Button onClick={logout} color="secondary" variant="contained" size="small">
+            Sign out
+          </Button>
+        </Container>
+      );
+    } else { // guest login
+      return (
+        <Container>
+          <Button href = "/sign-in" color="primary" variant="contained" size="small">
+            Sign in
+          </Button>
+          <Typography variant="caption text" color="textSecondary"> or </Typography>
+          <Button href = "/sign-up" color="primary" variant="outlined" size="small">
+            Sign up
+          </Button>
+        </Container>
+      );
+    }
+  }
 
   return (
     <AppBar
@@ -74,14 +121,8 @@ export default function AppAppBar() {
               alignItems: 'center',
             }}
           >
-            <Button href = "/sign-in" color="primary" variant="contained" size="small">
-              Sign in
-            </Button>
-            <Typography variant="caption text" color="textSecondary"> or </Typography>
-            <Button href = "/sign-up" color="primary" variant="outlined" size="small">
-              Sign up
-            </Button>
-            
+            {/* { top_guest_component } */}
+            <TopComponent />
             <ColorModeIconDropdown />
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' }, gap: 1 }}>
@@ -122,17 +163,7 @@ export default function AppAppBar() {
                 <MenuItem>FAQ</MenuItem>
                 <MenuItem>Blog</MenuItem>
                 <Divider sx={{ my: 3 }} />
-                <MenuItem>
-                  <Button href="/sign-in" color="primary" variant="contained" fullWidth>
-                    Sign in
-                  </Button>
-                </MenuItem>
-                <Typography align="center" color="textSecondary">or</Typography>
-                <MenuItem>
-                  <Button href = "/sign-up" color="primary" variant="outlined" fullWidth>
-                    Sign up
-                  </Button>
-                </MenuItem>
+                { dropdown_guest_component }
                 
               </Box>
             </Drawer>

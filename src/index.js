@@ -7,7 +7,9 @@ import Upload from "./routes/upload";
 import ConfirmUpload from "./routes/confirmUpload";
 import Checkout from "./checkout/Checkout";
 import SignUp from "./routes/sign-up";
-import SignIn from "./routes/sign-in";
+import SignIn from "./routes/sign-in"
+
+import AuthProvider from "./components/AuthProvider";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +37,8 @@ const router = createBrowserRouter([
 const root = createRoot(document.getElementById("root"));
 root.render(
   <StrictMode>
-    <RouterProvider router = {router} />
+    <AuthProvider>
+      <RouterProvider router = {router} />
+    </AuthProvider>
   </StrictMode>
 );
