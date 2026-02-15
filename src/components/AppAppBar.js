@@ -104,7 +104,7 @@ export default function AppAppBar() {
               <Button href="/upload" color="primary" variant="outlined" size="small" >
                 Upload photo
               </Button>
-              <Button variant="text" color="info" size="small">
+              <Button href = "/" variant="text" color="info" size="small">
                 Gallery
               </Button>
               <Button variant="text" color="info" size="small">

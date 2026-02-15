@@ -6,6 +6,7 @@ import Root from "./routes/root";
 import Upload from "./routes/upload";
 import SignUp from "./routes/sign-up";
 import SignIn from "./routes/sign-in"
+import Profile from "./routes/profile";
 
 import AuthProvider from "./components/AuthProvider";
 
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/sign-in",
     element: <SignIn />,
+  },
+  {
+    path: "/view/:username",
+    element: <Profile />,
   }
 ])
 

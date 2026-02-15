@@ -21,7 +21,11 @@ export const getAllPosts = async(req, res) => { // GET "/posts"
 
 export const getUserPosts = async(req, res) => { // GET "/posts/:userId"
     try {
-        const { userId } = req.body;
+        const username = req.params.username;
+        const user = await User.findOne({ username });
+        const posts = await Post.find({ "author.name": username })
+        res.status(201).json({user, posts});
+        console.log(`User email is: ${user.email}`)
     } catch (err) {
         console.log(err);
         res.status(500).json({ error: "Error getting users posts" });
@@ -66,8 +70,8 @@ export const getUser = async(req, res) => { // POST "sign-in"
         
         const token = jwt.sign(
             {
-                email: user.email,
-                id: user._id
+                // email: user.email,
+                userId: user._id
             },
             JWT_SECRET,
             { expiresIn: "1h" }
@@ -104,8 +108,7 @@ export const createUser = async(req, res) => { // POST "/sign-up"
 
         const token = jwt.sign(
             {
-                email: savedData.email,
-                id: savedData._id
+                userId: savedData._id
             },
             JWT_SECRET,
             { expiresIn: "1h" }
