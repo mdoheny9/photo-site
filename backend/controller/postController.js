@@ -9,7 +9,7 @@ dotenv.config();
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
-export const getPosts = async(req, res) => { // GET "/posts"
+export const getAllPosts = async(req, res) => { // GET "/posts"
     try {
         const posts = await Post.find({});
         res.json(posts);
@@ -19,13 +19,22 @@ export const getPosts = async(req, res) => { // GET "/posts"
     }
 }
 
+export const getUserPosts = async(req, res) => { // GET "/posts/:userId"
+    try {
+        const { userId } = req.body;
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ error: "Error getting users posts" });
+    }
+
+}
+
 export const createPost = async(req, res) => { // POST "/upload"
     try {
         const { author, description, img, date } = req.body;
         const newPost = new Post({
             author: {
                 name: author,
-                avatar: "default-avatar"
             },
             description,
             img,

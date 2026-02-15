@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -61,11 +60,6 @@ function Author({ cardData }) {
       <Box
         sx={{ display: 'flex', flexDirection: 'row', gap: 1, alignItems: 'center' }}
       >
-        <Avatar
-            alt={author.name}
-            src={author.avatar}
-            sx={{ width: 24, height: 24 }}
-        />
         <Typography variant="caption">{author.name}</Typography>
       </Box>
       <Typography variant="caption">{cardData.date}</Typography>
