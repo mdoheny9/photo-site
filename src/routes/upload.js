@@ -18,12 +18,14 @@ export default function Upload(props) {
     const onSubmit = async (data) => {
         try {
             const file = await convertToBase64(data.img[0]);
+            const token = sessionStorage.getItem('token');
 
             const response = await fetch('http://localhost:8080/api/upload', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+                 },
                 body: JSON.stringify({
-                    author: data.author,
                     description: data.description,
                     img: file,
                     date: new Date().toLocaleDateString('en-US', { 
@@ -51,13 +53,6 @@ export default function Upload(props) {
         <Card sx={{ mt: 3, minWidth: 375 }}>
         <CardContent>
             <form onSubmit={handleSubmit(onSubmit)}>
-                {/* Username input */}
-                <div style={{marginBottom: "1rem"}}>{'Username: '}
-                    <input {...register("author", { required: "Username is required" })} />
-                    {errors.author && 
-                    (<div style = {{color:"red"}}>{errors.author.message}</div>)}
-                </div>
-
                 {/* File input */}
                 <div style={{marginBottom: "1rem"}}>{'File: '}
                     <FileUpload register={register} errors={errors} />

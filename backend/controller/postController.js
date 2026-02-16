@@ -35,10 +35,12 @@ export const getUserPosts = async(req, res) => { // GET "/posts/:userId"
 
 export const createPost = async(req, res) => { // POST "/upload"
     try {
-        const { author, description, img, date } = req.body;
+        const { description, img, date } = req.body;
+        const userId = req.userId;
+        const user = await User.findOne({ "_id": userId });
         const newPost = new Post({
             author: {
-                name: author,
+                name: user.username,
             },
             description,
             img,
@@ -70,7 +72,6 @@ export const getUser = async(req, res) => { // POST "sign-in"
         
         const token = jwt.sign(
             {
-                // email: user.email,
                 userId: user._id
             },
             JWT_SECRET,

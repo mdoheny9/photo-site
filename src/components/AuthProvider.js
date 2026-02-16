@@ -7,7 +7,10 @@ const AuthProvider = ({ children }) => {
         return sessionStorage.getItem('token') || null;
     });
 
-    useEffect(() => {
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => { // saves token to session storage
         if (token) {
             sessionStorage.setItem('token', token);
         } else {
