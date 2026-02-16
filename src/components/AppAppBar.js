@@ -67,6 +67,9 @@ export default function AppAppBar() {
           <Button onClick={logout} color="secondary" variant="contained" size="small">
             Sign out
           </Button>
+          <Button href="/profile" color="primary" variant="contained" size="small">
+            My Profile
+          </Button>
         </Container>
       );
     } else {
