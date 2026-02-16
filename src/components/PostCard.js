@@ -6,6 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
+import { Link } from "react-router-dom";
 
 
 const StyledCard = styled(Card)(({ theme }) => ({
@@ -45,7 +46,7 @@ const StyledTypography = styled(Typography)({
 });
 
 function Author({ cardData }) {
-    const author = cardData.author;
+  const author = cardData.author;
   return (
     <Box
       sx={{
@@ -60,7 +61,9 @@ function Author({ cardData }) {
       <Box
         sx={{ display: 'flex', flexDirection: 'row', gap: 1, alignItems: 'center' }}
       >
-        <Typography variant="caption">{author.name}</Typography>
+        <Link to={`/view/${author.name}`}style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Typography variant="caption">{author.name}</Typography>
+        </Link>
       </Box>
       <Typography variant="caption">{cardData.date}</Typography>
     </Box>

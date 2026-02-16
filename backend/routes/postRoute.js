@@ -12,7 +12,7 @@ router.get("/posts", getAllPosts);
 
 router.get("/profile", checkToken, getMyPosts);
 
-// router.get("/posts/:username", getUserPosts);
+router.get("/:username", getUserPosts);
 
 router.post("/upload", checkToken, createPost);
 

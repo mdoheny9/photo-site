@@ -33,7 +33,7 @@ export const getMyPosts = async(req, res) => { // GET "/posts/:userId"
 
 }
 
-export const getUserPosts = async(req, res) => { // GET "/posts/:userId"
+export const getUserPosts = async(req, res) => { // GET "/posts/:username"
     try {
         const username = req.params.username;
         const user = await User.findOne({ username });

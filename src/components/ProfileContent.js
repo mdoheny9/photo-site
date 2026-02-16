@@ -37,8 +37,6 @@ export function Search() {
 
 export default function Profile() {
   const [focusedCardIndex, setFocusedCardIndex] = React.useState(null);
-  // const { username } = useParams();
-  // let username = '';
 
   const handleFocus = (index) => {
     setFocusedCardIndex(index);
@@ -52,21 +50,35 @@ export default function Profile() {
     console.info('You clicked the filter chip.');
   };
 
+  let { username } = useParams();
+  const targetUsername = username;
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [username, setUsername] = useState(null);
+  const [profileUsername, setProfileUsername] = useState(null);
   
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch(`http://localhost:8080/api/profile`, {
-          headers: {
-            'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-          }
-        });
-        const { username, posts } = await res.json();
-        setUsername(username);
-        setData(posts);
+        if (!targetUsername) { // Redirect from "My Profile"
+          const res = await fetch(`http://localhost:8080/api/profile`, {
+            headers: {
+              'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+            }
+          });
+          const { username, posts } = await res.json();
+          setProfileUsername(username);
+          setData(posts);
+
+        } else {
+          const res = await fetch(`http://localhost:8080/api/${targetUsername}`, {
+            headers: {
+              'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+            }
+          });
+          const { posts } = await res.json();
+          setProfileUsername(username);
+          setData(posts);
+        }
 
       } catch (err) {
         console.log(err);
@@ -81,11 +93,19 @@ export default function Profile() {
 
   }, []);
 
-  if (!username) {
+  if (loading) {
     return (
-        <Typography variant="h3" color='red'gutterBottom>
-          No user found
+        <Typography variant="h3" gutterBottom>
+          Loading...
         </Typography>
+    )
+  }
+
+  if (!profileUsername) {
+    return (
+      <Typography variant="h3" color='red' gutterBottom>
+        No user found
+      </Typography>
     )
   }
 
@@ -93,7 +113,7 @@ export default function Profile() {
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
       <div>
         <Typography variant="h1" gutterBottom>
-          {username}'s Gallery
+          {profileUsername}'s Gallery
         </Typography>
         <Typography>View the latest uploads from your community!</Typography>
       </div>
