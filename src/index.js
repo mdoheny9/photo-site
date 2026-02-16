@@ -1,6 +1,8 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
+
+import AuthProvider, { useAuth } from "./components/AuthProvider";
 
 import Root from "./routes/root";
 import Upload from "./routes/upload";
@@ -8,17 +10,17 @@ import SignUp from "./routes/sign-up";
 import SignIn from "./routes/sign-in"
 import Profile from "./routes/profile";
 
-import AuthProvider from "./components/AuthProvider";
+
+const ProtectedRoute = ({ children }) => {
+  const { token } = useAuth();
+
+  if (!token) {
+    return <Navigate to="/sign-in" replace />;
+  }
+  return children;
+}
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />
-  },
-  {
-    path: "/upload",
-    element: <Upload />,
-  },
   {
     path: "/sign-up",
     element: <SignUp />,
@@ -28,8 +30,16 @@ const router = createBrowserRouter([
     element: <SignIn />,
   },
   {
+    path: "/",
+    element: <ProtectedRoute><Root /></ProtectedRoute>,
+  },
+  {
+    path: "/upload",
+    element: <ProtectedRoute><Upload /></ProtectedRoute>,
+  },
+  {
     path: "/view/:username",
-    element: <Profile />,
+    element: <ProtectedRoute><Profile /></ProtectedRoute>,
   }
 ])
 

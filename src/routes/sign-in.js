@@ -100,7 +100,6 @@ export default function SignIn(props) {
 
     return (
         <AppTheme {...props}>
-            {/* <CssBaseline enableColorScheme /> */}
             <Grid container spacing={3} justifyContent={"center"}>
                 <Card sx={{ mt: 3, minWidth: 375 }}>
                     <CardContent>
@@ -108,6 +107,16 @@ export default function SignIn(props) {
                             Sign in
                         </Typography>
                         <SignInForm />
+                    </CardContent>
+                </Card>
+                <Card sx={{ mt: 3, minWidth: 375 }}>
+                    <CardContent>
+                        <Typography variant="h4" sx={{ mb: 2 }}>
+                            Don't have an account?
+                        </Typography>
+                        <div style={{ display: "flex", justifyContent: "center" }}>
+                            <Button href="/sign-up" variant="outlined" color="primary">Sign up</Button>
+                        </div>
                     </CardContent>
                 </Card>
             </Grid>
