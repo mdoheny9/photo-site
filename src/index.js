@@ -38,6 +38,10 @@ const router = createBrowserRouter([
     element: <ProtectedRoute><Upload /></ProtectedRoute>,
   },
   {
+    path: "/profile",
+    element: <ProtectedRoute><Profile /></ProtectedRoute>,
+  },
+  {
     path: "/view/:username",
     element: <ProtectedRoute><Profile /></ProtectedRoute>,
   }

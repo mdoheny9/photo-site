@@ -37,7 +37,8 @@ export function Search() {
 
 export default function Profile() {
   const [focusedCardIndex, setFocusedCardIndex] = React.useState(null);
-  const { username } = useParams();
+  // const { username } = useParams();
+  // let username = '';
 
   const handleFocus = (index) => {
     setFocusedCardIndex(index);
@@ -53,17 +54,18 @@ export default function Profile() {
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [userFound, setUserFound] = useState(true);
-//   let userflag = true;
+  const [username, setUsername] = useState(null);
   
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch(`http://localhost:8080/api/posts/${username}`); // assume res ok? 
-        const { user, posts } = await res.json();
-        if (!user) {
-            setUserFound(false);
-        }
+        const res = await fetch(`http://localhost:8080/api/profile`, {
+          headers: {
+            'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+          }
+        });
+        const { username, posts } = await res.json();
+        setUsername(username);
         setData(posts);
 
       } catch (err) {
@@ -79,7 +81,7 @@ export default function Profile() {
 
   }, []);
 
-  if (!userFound) {
+  if (!username) {
     return (
         <Typography variant="h3" color='red'gutterBottom>
           No user found

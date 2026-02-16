@@ -18,7 +18,6 @@ export default function Upload(props) {
     const onSubmit = async (data) => {
         try {
             const file = await convertToBase64(data.img[0]);
-            const token = sessionStorage.getItem('token');
 
             const response = await fetch('http://localhost:8080/api/upload', {
                 method: 'POST',

@@ -19,6 +19,20 @@ export const getAllPosts = async(req, res) => { // GET "/posts"
     }
 }
 
+export const getMyPosts = async(req, res) => { // GET "/posts/:userId"
+    try {
+        const userId = req.userId;
+        const user = await User.findOne({ "_id": userId });
+        const username = user.username;
+        const posts = await Post.find({ "author.name": username })
+        return res.status(201).json({username, posts});
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({ error: "Error getting users posts" });
+    }
+
+}
+
 export const getUserPosts = async(req, res) => { // GET "/posts/:userId"
     try {
         const username = req.params.username;
